@@ -1,4 +1,6 @@
 import json
+from datetime import datetime
+
 from django.forms.widgets import Textarea
 from django.forms.util import flatatt
 from django.utils.safestring import mark_safe
@@ -16,7 +18,7 @@ IMPERAVI_SETTINGS = getattr(settings, 'IMPERAVI_CUSTOM_SETTINGS', {})
 class ImperaviWidget(Textarea):
 
     def __init__(self, *args, **kwargs):
-        self.upload_path = kwargs.pop('upload_path', UPLOAD_PATH)
+        self.upload_path = kwargs.pop('upload_path', UPLOAD_PATH)# +'/'+str(datetime.now().year)+'/'+str(datetime.now().strftime('%m'))+'/'
         self.imperavi_settings = IMPERAVI_SETTINGS
         super(ImperaviWidget, self).__init__(*args, **kwargs)
 
@@ -40,8 +42,12 @@ class ImperaviWidget(Textarea):
                 $(document).ready(
                     function() {
                         $("#%(id)s").parent().siblings('label').css('float', 'none');
-                        $("#%(id)s").height(300);
+                        $("#%(id)s").height(700);
                         $("#%(id)s").redactor(%(imperavi_settings)s);
+                    	if (django.jQuery('#id_linked_to_father').is(':checked')) {
+                            $("#%(id)s").siblings(".redactor_editor").attr('contenteditable', 'false');
+                            console.log('#%(id)s');
+                        }
                     }
                 );
             </script>

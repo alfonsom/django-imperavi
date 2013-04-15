@@ -23,6 +23,7 @@ class ImperaviAdmin(admin.ModelAdmin):
         js = (
             '%simperavi/jquery.js' % settings.STATIC_URL,
             '%simperavi/redactor/redactor.min.js' % settings.STATIC_URL,
+            '%simperavi/redactor/fullscreen.js' % settings.STATIC_URL,
         )
         css = {
             'all': (
@@ -49,6 +50,7 @@ class ImperaviStackedInlineAdmin(admin.StackedInline):
         js = (
             '%simperavi/jquery.js' % settings.STATIC_URL,
             '%simperavi/redactor/redactor.min.js' % settings.STATIC_URL,
+            '%simperavi/redactor/fullscreen.js' % settings.STATIC_URL,
         )
         css = {
             'all': (
