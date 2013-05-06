@@ -44,9 +44,9 @@ class ImperaviWidget(Textarea):
                         $("#%(id)s").parent().siblings('label').css('float', 'none');
                         $("#%(id)s").height(700);
                         $("#%(id)s").redactor(%(imperavi_settings)s);
-                    	if (django.jQuery('#id_linked_to_father').is(':checked')) {
-                            $("#%(id)s").siblings(".redactor_editor").attr('contenteditable', 'false');
-                            console.log('#%(id)s');
+                        # if (django.jQuery('#id_linked_to_father').is(':checked')) {
+                        #                             $("#%(id)s").siblings(".redactor_editor").attr('contenteditable', 'false');
+                        #                             console.log('#%(id)s');
                         }
                     }
                 );
