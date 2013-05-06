@@ -44,7 +44,6 @@ class ImperaviWidget(Textarea):
                         $("#%(id)s").parent().siblings('label').css('float', 'none');
                         $("#%(id)s").height(700);
                         $("#%(id)s").redactor(%(imperavi_settings)s);
-                        }
                     }
                 );
             </script>
