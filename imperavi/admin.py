@@ -24,6 +24,7 @@ class ImperaviAdmin(admin.ModelAdmin):
             '%simperavi/jquery.js' % settings.STATIC_URL,
             '%simperavi/redactor/redactor.js' % settings.STATIC_URL,
             '%simperavi/redactor/fullscreen.js' % settings.STATIC_URL,
+            '%simperavi/redactor/textdirection.js' % settings.STATIC_URL,
         )
         css = {
             'all': (
