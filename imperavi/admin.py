@@ -21,7 +21,7 @@ class ImperaviAdmin(admin.ModelAdmin):
 
     class Media:
         js = (
-            '%simperavi/jquery.js' % settings.STATIC_URL,
+            #'%simperavi/jquery.js' % settings.STATIC_URL,
             '%simperavi/redactor/redactor.js' % settings.STATIC_URL,
             '%simperavi/redactor/fullscreen.js' % settings.STATIC_URL,
             '%simperavi/redactor/textdirection.js' % settings.STATIC_URL,
