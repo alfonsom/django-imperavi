@@ -19,6 +19,7 @@ class ImperaviWidget(Textarea):
 
     def __init__(self, *args, **kwargs):
         self.upload_path = kwargs.pop('upload_path', UPLOAD_PATH)# +'/'+str(datetime.now().year)+'/'+str(datetime.now().strftime('%m'))+'/'
+        self.file_upload_path = getattr(settings, 'IMPERAVI_FILE_UPLOAD_PATH', {})
         self.imperavi_settings = IMPERAVI_SETTINGS
         super(ImperaviWidget, self).__init__(*args, **kwargs)
 
@@ -30,7 +31,7 @@ class ImperaviWidget(Textarea):
         self.imperavi_settings.update({
             'imageUpload': reverse('imperavi-upload-image', kwargs={'upload_path': self.upload_path}),
             'imageGetJson': reverse('imperavi-get-json', kwargs={'upload_path': self.upload_path}),
-            'fileUpload': reverse('imperavi-upload-file', kwargs={'upload_path': self.upload_path}),
+            'fileUpload': reverse('imperavi-upload-file', kwargs={'upload_path': self.file_upload_path}),
             'linkFileUpload': reverse('imperavi-upload-link-file', kwargs={'upload_path': self.upload_path}),
         })
         imperavi_settings = json.dumps(self.imperavi_settings)
