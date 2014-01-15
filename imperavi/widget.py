@@ -36,7 +36,7 @@ class ImperaviWidget(Textarea):
         })
         imperavi_settings = json.dumps(self.imperavi_settings)
         return mark_safe(u"""
-            <div style="width: 597px;">
+            <div style="width: 615px;">
                 <textarea%(attrs)s>%(value)s</textarea>
             </div>
             <script>
