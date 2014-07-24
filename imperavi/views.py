@@ -35,6 +35,7 @@ def upload_image(request, upload_path=None):
         image_name, extension = os.path.splitext(image.name)
         m = hashlib.md5(smart_str(image_name))
         hashed_name = '{0}{1}'.format(m.hexdigest(), extension)
+        hashed_name = 'opus-dei-'+hashed_name
         image_path = default_storage.save(os.path.join(upload_path or UPLOAD_PATH, hashed_name), image)
         image_url = default_storage.url(image_path)
         return HttpResponse(json.dumps({'filelink': image_url}))
@@ -50,13 +51,13 @@ def uploaded_images_json(request, upload_path=None):
     bucket = conn.get_bucket(BUCKET_NAME)
     # for key in bucket.list():
     #     print key.name.encode('utf-8')
-    #         
-        
+    #
+
     results = list()
     folder = 'init'
     for key in bucket.list('image/library/'):
         name = key.name.replace('image/library/','')
-        
+
         a = string.split(name,'/')
         if a[0]==folder:
             image_url = settings.AMAZON_URL+key.name
@@ -64,7 +65,7 @@ def uploaded_images_json(request, upload_path=None):
             results.append({'thumb':image_url, 'image':image_url, 'folder': folder })
         else:
             folder = a[0]
-    
+
     # if os.path.isdir(path):
     #     for image in os.listdir(path):
     #         image_path = '{0}{1}'.format(path, smart_str(image))
