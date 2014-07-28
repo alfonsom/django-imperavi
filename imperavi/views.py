@@ -3,6 +3,7 @@ import json
 import os.path
 import imghdr
 import string
+import time
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import user_passes_test
@@ -33,7 +34,8 @@ def upload_image(request, upload_path=None):
         if image.content_type not in ['image/png', 'image/jpg', 'image/jpeg', 'image/pjpeg']:
             return HttpResponse('Bad image format')
         image_name, extension = os.path.splitext(image.name)
-        m = hashlib.md5(smart_str(image_name))
+        timestr = time.strftime("%Y%m%d-%H%M%S")
+        m = hashlib.md5(smart_str(timestr+image_name))
         hashed_name = '{0}{1}'.format(m.hexdigest(), extension)
         hashed_name = 'opus-dei-'+hashed_name
         image_path = default_storage.save(os.path.join(upload_path or UPLOAD_PATH, hashed_name), image)
