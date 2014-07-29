@@ -87,7 +87,8 @@ def upload_file(request, upload_path=None, upload_link=None):
     form = FileForm(request.POST, request.FILES)
     if form.is_valid():
         uploaded_file = form.cleaned_data['file']
-        path = os.path.join(upload_path or UPLOAD_PATH, uploaded_file.name)
+        timestr = time.strftime("%Y%m%d-%H%M%S")
+        path = os.path.join(upload_path or UPLOAD_PATH, uploaded_file.name+timestr)
         image_path = default_storage.save(path, uploaded_file)
         image_url = default_storage.url(image_path)
         if upload_link:
