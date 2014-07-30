@@ -89,7 +89,7 @@ def upload_file(request, upload_path=None, upload_link=None):
         uploaded_file = form.cleaned_data['file']
         file_name, extension = os.path.splitext(uploaded_file.name)
         timestr = time.strftime(u"%Y%m%d-%H%M%S")
-        full_name = '{0}{1}'.format(file_name+timestr, extension)
+        full_name = u'{0}{1}'.format(file_name+timestr, extension)
         path = os.path.join(upload_path or UPLOAD_PATH, full_name)
         image_path = default_storage.save(path, uploaded_file)
         image_url = default_storage.url(image_path)
