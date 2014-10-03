@@ -13,6 +13,7 @@ from views import UPLOAD_PATH
 
 
 IMPERAVI_SETTINGS = getattr(settings, 'IMPERAVI_CUSTOM_SETTINGS', {})
+STATIC_URL = getattr(settings, 'STATIC_URL')
 
 
 class ImperaviWidget(Textarea):
@@ -30,7 +31,7 @@ class ImperaviWidget(Textarea):
         field_id = final_attrs.get('id')
         self.imperavi_settings.update({
             'imageUpload': reverse('imperavi-upload-image', kwargs={'upload_path': self.upload_path}),
-            'imageGetJson': reverse('imperavi-get-json', kwargs={'upload_path': self.upload_path}),
+            'imageManagerJson': reverse('imperavi-get-json', kwargs={'upload_path': self.upload_path}),
             'fileUpload': reverse('imperavi-upload-file', kwargs={'upload_path': self.file_upload_path}),
             'linkFileUpload': reverse('imperavi-upload-link-file', kwargs={'upload_path': self.upload_path}),
         })
@@ -39,6 +40,15 @@ class ImperaviWidget(Textarea):
             <div style="width: 615px;">
                 <textarea%(attrs)s>%(value)s</textarea>
             </div>
+
+            <!-- Plugins -->
+            <script src="%(static_url)simperavi/redactor/plugins/video.js"></script>
+            <script src="%(static_url)simperavi/redactor/plugins/textdirection.js"></script>
+            <script src="%(static_url)simperavi/redactor/plugins/insertGallery.js"></script>
+            <script src="%(static_url)simperavi/redactor/plugins/fullscreen.js"></script>
+            <script src="%(static_url)simperavi/redactor/plugins/table.js"></script>
+            <script src="%(static_url)simperavi/redactor/plugins/imagemanager.js"></script>
+
             <script>
                 $(document).ready(
                     function() {
@@ -53,5 +63,6 @@ class ImperaviWidget(Textarea):
                 'value': conditional_escape(force_unicode(value)),
                 'id': field_id,
                 'imperavi_settings': imperavi_settings,
+                'static_url': STATIC_URL,
             }
         )
