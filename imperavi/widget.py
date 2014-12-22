@@ -41,6 +41,9 @@ class ImperaviWidget(Textarea):
                 <textarea%(attrs)s>%(value)s</textarea>
             </div>
 
+            <!-- Font Awesome icons -->
+            <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css">
+
             <!-- Plugins -->
             <script src="%(static_url)simperavi/redactor/plugins/video.js"></script>
             <script src="%(static_url)simperavi/redactor/plugins/textdirection.js"></script>
