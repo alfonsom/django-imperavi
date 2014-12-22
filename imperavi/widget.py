@@ -48,6 +48,7 @@ class ImperaviWidget(Textarea):
             <script src="%(static_url)simperavi/redactor/plugins/fullscreen.js"></script>
             <script src="%(static_url)simperavi/redactor/plugins/table.js"></script>
             <script src="%(static_url)simperavi/redactor/plugins/imagemanager.js"></script>
+            <script src="%(static_url)simperavi/redactor/plugins/flickr.js"></script>
 
             <script>
                 $(document).ready(
